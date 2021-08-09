@@ -8,9 +8,9 @@ public class TalkWithNPC : MonoBehaviour, IPointerDownHandler
 
     private RubyController ruby;
     // Start is called before the first frame update
-    void Awake()
+    void Start()
     {
-        ruby = GameObject.Find("Player").GetComponent<RubyController>();
+        ruby = GameObject.Find("Player(Clone)").GetComponent<RubyController>();
     }
 
     // Update is called once per frame

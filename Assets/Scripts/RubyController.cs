@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Serialization;
+using Photon.Pun;
 
-public class RubyController : MonoBehaviour
+public class RubyController : MonoBehaviourPun
 {
     public float speed;
 
@@ -31,10 +32,10 @@ public class RubyController : MonoBehaviour
 
     Vector2 fixedVector;
 
-
     // Start is called before the first frame update
     void Start()
     {
+        joystick = GameObject.Find("Canvas/Variable Joystick").GetComponent<VariableJoystick>();
         invincibleTimer = 0;
         currentHealth = 4;
         rigidbody2d = GetComponent<Rigidbody2D>();
@@ -45,6 +46,10 @@ public class RubyController : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        if(!(photonView.IsMine && PhotonNetwork.IsConnected))
+        {
+            return;
+        }
         RubyMove();
         if (isInvincible)
         {
@@ -82,6 +87,8 @@ public class RubyController : MonoBehaviour
     }
     void RubyMove()
     {
+        //float moveX = Input.GetAxis("Horizontal");
+        //float moveY = Input.GetAxis("Vertical");
         float moveX = joystick.Horizontal;
         float moveY = joystick.Vertical;
 

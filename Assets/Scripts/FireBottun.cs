@@ -6,9 +6,9 @@ using UnityEngine.EventSystems;
 public class FireBottun : MonoBehaviour,IPointerDownHandler
 {
     private RubyController ruby;
-    void Awake()
+    void Start()
     {
-        ruby = GameObject.Find("Player").GetComponent<RubyController>();
+        ruby = GameObject.Find("Player(Clone)").GetComponent<RubyController>();
     }
 
     public void OnPointerDown(PointerEventData eventData)
